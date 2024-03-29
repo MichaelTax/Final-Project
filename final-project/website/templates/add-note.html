@@ -1,0 +1,84 @@
+<!-- add_note.html -->
+
+{% extends "base.html" %}
+{% block title %}Add Note{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Hide scroll bars */
+        background-image: url('static/background.jpg'); /* Path to your GIF file */
+        background-size: cover; /* Cover the entire background */
+        background-repeat: no-repeat; /* Do not repeat the background image */
+        background-position: center; /* Center the background image */
+        min-height: 100vh; /* Set minimum height to full viewport height */
+        overflow-y: scroll;
+    }
+  
+    /* Style the grey box */
+    .login-box {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px; /* Adjusted padding */
+      background-color: #dddddd; /* Grey background color */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center; /* Center the content inside the box */
+    }
+  
+    /* Adjust the width of input elements */
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Style the label */
+    .label-box {
+      padding: 10px; /* Padding around the label */
+      border: 1px solid #ccc; /* Border style */
+      border-radius: 5px; /* Rounded corners */
+      background-color: #f9f9f9; /* Background color */
+      margin-bottom: 15px; /* Add some margin to the bottom */
+      display: inline-block; /* Display as inline block */
+    }
+
+    /* Style the delete button */
+    .delete-btn {
+      background-color: #ff0000; /* Red background color */
+      color: #fff; /* White text color */
+      border: none;
+      border-radius: 50%; /* Make it a circle */
+      width: 20px;
+      height: 20px;
+      line-height: 20px; /* Center the X horizontally and vertically */
+      text-align: center;
+      cursor: pointer;
+      float: right; /* Align to the right */
+    }
+</style>
+
+<div class="container">
+    <!-- Title centered in a smaller box -->
+    <div class="login-box">
+        <div class="label-box">
+            <label for="note_content">Note Content:</label>
+        </div>
+        <!-- Form content -->
+        <form id="addNoteForm" method="POST" action="{{ url_for('views.add_note') }}">
+            <div class="form-group">
+                <textarea class="form-control" id="note_content" name="note_content" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

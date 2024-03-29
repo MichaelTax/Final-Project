@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %} Michael's Notes - Logout {% endblock %}
+
+{% block content %}
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Hide scroll bars */
+      background-image: url('static/background.jpg'); /* Path to your GIF file */
+      background-size: cover; /* Cover the entire background */
+      background-repeat: no-repeat; /* Do not repeat the background image */
+      background-position: center; /* Center the background image */
+      min-height: 100vh; /* Set minimum height to full viewport height */
+      overflow-y: scroll;
+  }
+
+  /* Style the logout button container */
+  .logout-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  /* Style the small box */
+  .logout-box {
+    display: inline-block;
+    padding: 10px; /* Adjusted padding */
+    background-color: #e0e0e0; /* Darker grey background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Style the logout button */
+  .logout-button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #dc3545; /* Red color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .logout-button:hover {
+    background-color: #c82333; /* Darker red color */
+  }
+
+  /* Style the confirmation modal */
+  .confirmation-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    overflow: auto;
+    padding-top: 100px;
+    box-sizing: border-box;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+
+  .modal-content button {
+    background-color: #007bff; /* Blue color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .modal-content button:hover {
+    background-color: #0056b3; /* Darker blue color */
+  }
+</style>
+
+<div class="logout-container">
+  <div class="logout-box">
+    <button id="logoutButton" class="logout-button">Logout</button>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmationModal" class="confirmation-modal">
+  <div class="modal-content">
+    <p>Are you sure you want to logout?</p>
+    <button id="confirmLogout">Yes</button>
+  </div>
+</div>
+
+<script>
+  var logoutButton = document.getElementById("logoutButton");
+  var confirmationModal = document.getElementById("confirmationModal");
+
+  logoutButton.addEventListener("click", function() {
+    confirmationModal.style.display = "block";
+  });
+
+  document.getElementById("confirmLogout").addEventListener("click", function() {
+    window.location.href = "/";
+  });
+</script>
+{% endblock %}

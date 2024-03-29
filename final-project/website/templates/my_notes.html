@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %} My Notes {% endblock %}
+
+{% block content %}
+<style>
+    /* Updated styles for background photo */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-image: url('static/note_background.jpg'); /* Path to your background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 100vh;
+    }
+
+    .note-box {
+        position: relative; /* Make note-box position relative */
+        width: 400px;
+        padding: 30px;
+        background-color: #ffffcc;
+        border: 2px solid #cccc00;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .note-box p {
+        margin-bottom: 10px;
+    }
+
+    .delete-btn {
+        position: absolute; /* Position delete button relative to note-box */
+        top: 5px;
+        right: 5px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+</style>
+<div class="container">
+    <h1 style="text-align: center;">My Notes</h1>
+    {% if user_notes %}
+    <div class="row">
+        {% for note in user_notes %}
+        <div class="col-md-6 mx-auto">
+            <div class="note-box">
+                <!-- Pass note id to delete-note form -->
+                <form action="/delete-note" method="post">
+                    <input type="hidden" name="note_id" value="{{ note._id }}">
+                    <button type="submit" class="delete-btn">X</button>
+                </form>
+                <p>{{ note.content }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="text-align: center;">No notes found.</p>
+    {% endif %}
+</div>
+{% endblock %}

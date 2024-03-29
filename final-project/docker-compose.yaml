@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  app:
+    image: michaeltax/finalproject:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://my-mongo:27017/
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=my-mongo
+    volumes:
+      - mongo_data:/data/db
+
+  app-tests: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - TEST_MONGODB_URI=mongodb://mongo:27017/my-mongo
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
+

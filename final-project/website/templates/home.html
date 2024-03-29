@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %} Michael's Notes - Home {% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scroll bars */
+            background-image: url('static/background.jpg'); /* Path to your GIF file */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            background-position: center; /* Center the background image */
+            min-height: 100vh; /* Set minimum height to full viewport height */
+            overflow-y: scroll;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add some transparency to make text readable */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.5s ease; /* Add transition for background-color */
+        }
+
+        .login-btn.active,
+        .signup-btn.active {
+            background-color: #ffc107; /* Highlight color */
+        }
+
+        .login-btn {
+            background-color: #28a745; /* Green color */
+        }
+
+        .login-btn:hover {
+            background-color: #218838; /* Darker green color */
+        }
+
+        .signup-btn {
+            background-color: #007bff; /* Blue color */
+        }
+
+        .signup-btn:hover {
+            background-color: #0056b3; /* Darker blue color */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Notes App</h1>
+        <p>Store your thoughts, ideas, and reminders with ease.</p>
+        <a href="{{ url_for('views.add_note') }}" class="btn">Add a Note Test</a>
+        <button class="btn" onclick="location.href='/my_notes'">My Notes</button>
+
+        {% if not logged_in %}
+                    <!-- Buttons for login and sign up -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="login-btn" onclick="location.href='/login'">Already a member - Login</button>
+            <button class="signup-btn" onclick="location.href='/sign-up'">New here? - Sign up</button>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
